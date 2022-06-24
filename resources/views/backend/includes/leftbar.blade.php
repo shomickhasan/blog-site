@@ -23,7 +23,16 @@
           <ul class="br-menu-sub">
             <li class="sub-item"><a href="{{Route('category.add')}}" class="sub-link">Add Category</a></li>
             <li class="sub-item"><a href="{{Route('category.manage')}}" class="sub-link">Manage Category</a></li>
-            <li class="sub-item"><a href="card-listing.html" class="sub-link">Shop &amp; Listing</a></li>
+          </ul>
+        </li>
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fas fa-tags"></i>
+            <span class="menu-item-label">Tags</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            <li class="sub-item"><a href="{{Route('tag.add')}}" class="sub-link">Add Tag</a></li>
+            <li class="sub-item"><a href="{{Route('tag.manage')}}" class="sub-link">Manage Tag</a></li>  
           </ul>
         </li>
       </ul><!-- br-sideleft-menu -->
