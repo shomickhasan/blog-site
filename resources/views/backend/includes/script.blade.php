@@ -20,6 +20,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
     <script src="{{asset('backeend/js/bracket.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="{{asset('backeend/js/map.shiftworker.js')}}"></script>
     <script src="{{asset('backeend/js/ResizeSensor.js')}}"></script>
     <script src="{{asset('backeend/js/dashboard.js')}}"></script>

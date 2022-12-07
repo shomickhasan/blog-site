@@ -14,4 +14,7 @@ class Tag extends Model
         'drescreption',
     ];
     use HasFactory;
+    public function blogpost(){
+        return $this->belongsToMany(Blogpost::class);
+    }
 }

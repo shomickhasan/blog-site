@@ -35,17 +35,34 @@
             <li class="sub-item"><a href="{{Route('tag.manage')}}" class="sub-link">Manage Tag</a></li>  
           </ul>
         </li>
+        
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fas fa-book-open"></i>
+            <span class="menu-item-label">Blog Post</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            <li class="sub-item"><a href="{{Route('blog.add')}}" class="sub-link">Add Blog</a></li>
+            <li class="sub-item"><a href="{{Route('blog.manage')}}" class="sub-link">Manage Blog</a></li>  
+          </ul>
+        </li>
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="fas fa-users"></i>
+            <span class="menu-item-label">Users Management</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub">
+            <li class="sub-item"><a href="{{Route('manage_user')}}" class="sub-link">Manage User</a></li>
+            <li class="sub-item"><a href="{{Route('adduser')}}" class="sub-link">Add User</a></li>  
+          </ul>
+        </li>
       </ul><!-- br-sideleft-menu -->
 
       <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Information Summary</label>
 
       <div class="info-list">
         <div class="info-list-item">
-          <div>
-            <p class="info-list-label">Memory Usage</p>
-            <h5 class="info-list-amount">32.3%</h5>
-          </div>
-          <span class="peity-bar" data-peity='{ "fill": ["#336490"], "height": 35, "width": 60 }'>8,6,5,9,8,4,9,3,5,9</span>
+          <a target="_blank" href="http://localhost:8000/" class="btn btn-primary">Visit Mini-Blog</a>
         </div><!-- info-list-item -->
 
         <div class="info-list-item">

@@ -3,6 +3,7 @@
     <link href="{{asset('backeend/lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
     <link href="{{asset('backeend/lib/rickshaw/rickshaw.min.css')}}" rel="stylesheet">
     <link href="{{asset('backeend/lib/select2/css/select2.min.css')}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 
