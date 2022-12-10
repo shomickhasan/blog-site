@@ -9,8 +9,8 @@ use  App\Models\Backend\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use Image;
-use File;
+use Nette\Utils\Image;
+use Illuminate\Support\Facades\File;;
 use App\Models\Backend\Tag;
 
 class BlogpostController extends Controller
@@ -34,7 +34,7 @@ class BlogpostController extends Controller
      */
     public function create()
     {
-        //manage blog 
+        //manage blog
         $blogs = Blogpost::orderBy('created_at', 'DESC')->paginate(20);
         return view('backend.pages.blogpost.manageblog',compact('blogs'));
     }
@@ -47,7 +47,7 @@ class BlogpostController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $request->validate([
             'title'=>'required|unique:blogposts,title',
             'categoryId'=>'required',
@@ -77,7 +77,7 @@ class BlogpostController extends Controller
         }
         else{
             alert()->error('Error','something is happend please Try again');
-            return back(); 
+            return back();
         }
     }
 
@@ -106,7 +106,7 @@ class BlogpostController extends Controller
         $categories = Category::all();
         return view('backend.pages.blogpost.editblog',compact('blog','categories'));
 
-        
+
     }
 
     /**
@@ -119,7 +119,7 @@ class BlogpostController extends Controller
     public function update(Request $request, $id)
     {
         //blog post update
-        
+
 
         $request->validate([
             'title'=>'required',

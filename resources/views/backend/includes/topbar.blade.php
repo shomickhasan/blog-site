@@ -1,7 +1,7 @@
 <!-- ########## START: HEAD PANEL ########## -->
 @php
-    $userName = Auth::user()->name;
-    $email = Auth::user()->email;
+    $userName = Auth::guard('userinfo')->user()->name;
+    $email = Auth::guard('userinfo')->user()->email;
 @endphp
     <div class="br-header">
       <div class="br-header-left">
@@ -169,7 +169,7 @@
                 <li><a href=""><i class="icon ion-ios-download"></i> Downloads</a></li>
                 <li><a href=""><i class="icon ion-ios-star"></i> Favorites</a></li>
                 <li><a href=""><i class="icon ion-ios-folder"></i> Collections</a></li>
-                <li><a href=""><i class="icon ion-power"></i> Sign Out</a></li>
+                <li><a href="{{Route('Logout')}}"><i class="icon ion-power"></i> Sign Out</a></li>
               </ul>
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
