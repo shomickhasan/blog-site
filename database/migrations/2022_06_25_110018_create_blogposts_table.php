@@ -20,7 +20,7 @@ class CreateBlogpostsTable extends Migration
             $table->string('image');
             $table->string('short_drescreption');
             $table->longText('drescreption');
-            $table->integer('status')->defoult(1)->comment('1 for active, 0 for inactive');
+            $table->integer('status')->default(2);
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamp('publish_date')->nullable();

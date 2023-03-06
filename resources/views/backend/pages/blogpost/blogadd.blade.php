@@ -1,6 +1,6 @@
 @extends('backend.mastertemplate.template')
 
-@section('contant') 
+@section('contant')
 {{-- topnavigationbar --}}
 <div class="br-pagetitle">
     <i class="icon ion-ios-home-outline"></i>
@@ -22,7 +22,7 @@
                                 <div class="form-group">
                                     <label id="title">Title</label>
                                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter your Blog Title"/>
-                                    @error('title') 
+                                    @error('title')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
@@ -31,9 +31,9 @@
                                     <select name="categoryId" id="categoryId" class="form-control">
                                         <option value="">--select category---</option>
                                         @foreach ($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option> 
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
-                                        @error('categoryId') 
+                                        @error('categoryId')
                                           <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </select>
@@ -41,21 +41,21 @@
                                 <div class="form-group">
                                     <label for="image">Image</label>
                                     <input type="file" class="form-control" id="image" name="image"/>
-                                     @error('image') 
+                                     @error('image')
                                       <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label id="short_drescreption">Short Drescreption</label>
                                     <textarea name="short_drescreption" id="short_drescreption"  class="form-control"></textarea>
-                                    @error('short_drescreption') 
+                                    @error('short_drescreption')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label id="drescreption">Drescreption</label>
                                     <textarea name="drescreption" id="postdrescreption"  class="form-control"></textarea>
-                                    @error('drescreption') 
+                                    @error('drescreption')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
@@ -66,17 +66,17 @@
                                 </div>
                                 @endforeach
 
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label id="status">Status</label>
                                     <select name="status" id="" class="form-control">
                                     <option value="1">---status---</option>
                                     <option value="1">Active</option>
-                                    <option value="0">Inactive</option> 
+                                    <option value="0">Inactive</option>
                                     </select>
-                                    @error('status') 
+                                    @error('status')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group pt-5">
                                     <input type="submit" class="form-control btn btn-primary" id="addCategory" name="addCategory" value="Save"/>
@@ -90,7 +90,7 @@
               </div><!-- pd-x-25 -->
             </div><!-- card -->
 
-         
+
 
 
 @endsection

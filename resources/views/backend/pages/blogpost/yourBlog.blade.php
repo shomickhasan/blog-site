@@ -5,7 +5,7 @@
 <div class="br-pagetitle">
     <i class="icon ion-ios-home-outline"></i>
     <div>
-      <h4>Manage Blog</h4>
+      <h4>Your Blogs</h4>
       <p class="mg-b-0">Manage Your Blog, You Can Edit Update And Delete Your Blog</p>
     </div>
   </div>
@@ -23,30 +23,28 @@
                                     <th>Title</th>
                                     <th>Image</th>
                                     <th>Category</th>
-                                    <th>Author</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $sl=1 @endphp
-                                @foreach ($blogs as $blog)
+                                @foreach($your_blogs as $blog)
                                 <tr>
                                     <td>{{$sl}}</td>
                                     <td>{{$blog->title  }}</td>
                                     <td><img height="80" src="{{asset('backeend/blogimg/'. $blog->image)}}" alt=""></td>
                                     <td>{{$blog->category->name}}</td>
-                                    <td>{{$blog->users->name}}</td>
                                     <td>
                                     @if($blog->status==1)
-                                     <span class="badge badge-info">Approve</span>
+                                     <span class="badge badge-info">Approved</span>
                                     @else
-                                    <span class="badge badge-danger">Panding</span>
+                                    <span class="badge badge-danger">Painding</span>
                                     </td>
                                     @endif
                                     <td>
-                                      <a href="{{Route('blog.show',$blog->id)}}" class=" btn btn-sm btn-success"><i class="fas fa-eye"></i></a>
-                                        <a href="{{Route('blog.edit',$blog->id)}}" class=" btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+                                      <a href="" class=" btn btn-sm btn-success"><i class="fas fa-eye"></i></a>
+                                        <a href="" class=" btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
 
                                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#blogpost{{$blog->id}}">
                                            <i class="fas fa-trash-alt"></i>

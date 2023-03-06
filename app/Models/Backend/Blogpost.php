@@ -4,7 +4,7 @@ namespace App\Models\Backend;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\Models\userInfo;
 
 
 class Blogpost extends Model
@@ -26,10 +26,10 @@ class Blogpost extends Model
         return $this->belongsTo(Category::class,'category_id');
     }
     public function users(){
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(userInfo::class,'user_id');
     }
     //  public function tags(){
     //      return $this->belongsToMany(Tag::class);
     // }
-   
+
 }

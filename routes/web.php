@@ -36,6 +36,7 @@ Route::get('/userlogin',[UserAuthController::class,'showLoginForm'])->name('show
 Route::get('/userregestration',[UserAuthController::class,'showRegestrationForm'])->name('showRegForm');
 Route::post('/signin',[UserAuthController::class,'signin'])->name('signin');
 Route::get('/logout',[UserAuthController::class,'Logout'])->name('Logout');
+Route::post('/user/signup',[UserAuthController::class,'SignUp'])->name('signup');
 
 
 
@@ -51,7 +52,7 @@ Route::get('/dashboard', function () {
 
 
 /************ ROUTE FOR ADMIN**************/
-Route::prefix('admin')->group(function(){
+Route::middleware(['User_info'])->prefix('admin')->group(function(){
     //user management route
     Route::prefix('user')->group(function(){
         Route::get('/manage',[UserController::class,'show'])->name('manage_user');
@@ -88,6 +89,9 @@ Route::prefix('admin')->group(function(){
         Route::get('/edit/{id}','App\Http\Controllers\Backend\BlogpostController@edit')->name('blog.edit');
         Route::post('/update/{id}','App\Http\Controllers\Backend\BlogpostController@update')->name('blog.update');
         Route::get('/show/{id}','App\Http\Controllers\Backend\BlogpostController@show')->name('blog.show');
+        Route::get('/your_blogs/{auth_id}','App\Http\Controllers\Backend\BlogpostController@your_blogs')->name('your_blogs');
+        Route::get('/request','App\Http\Controllers\Backend\BlogpostController@BlogRequest')->name('request.blog');
+        Route::get('/request/approve/{id}','App\Http\Controllers\Backend\BlogpostController@BlogRequestApprove')->name('request.blog.approve');
     });
 
 });

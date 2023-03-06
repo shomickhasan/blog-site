@@ -146,7 +146,7 @@
           </div><!-- dropdown -->
           <div class="dropdown">
             <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name hidden-md-down">{{ $userName}}</span>
+              <span class="logged-name hidden-md-down text-uppercase ">{{ $userName}}</span>
               <img src="https://via.placeholder.com/500" class="wd-32 rounded-circle" alt="">
               <span class="square-10 bg-success"></span>
             </a>

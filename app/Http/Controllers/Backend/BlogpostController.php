@@ -9,17 +9,16 @@ use  App\Models\Backend\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use Nette\Utils\Image;
-use Illuminate\Support\Facades\File;;
+use Image;
+use File;
 use App\Models\Backend\Tag;
+use App\Events\PostCreatedEvent;
 
 class BlogpostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $eventdata =[];
+
+
     public function index()
     {
         $tags = Tag::all();
@@ -27,11 +26,8 @@ class BlogpostController extends Controller
         return view('backend.pages.blogpost.blogadd',compact('categories','tags'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+   //blog post created
     public function create()
     {
         //manage blog
@@ -40,10 +36,8 @@ class BlogpostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Store a newly created blogpost  in storage.
+
      */
     public function store(Request $request)
     {
@@ -57,12 +51,13 @@ class BlogpostController extends Controller
         $blog = new Blogpost();
         $blog->title = $request->title;
         $blog->category_id = $request->categoryId;
-        $blog->user_id = auth()->user()->id;
+        $blog->user_id = Auth::guard('userinfo')->user()->id;
         $blog->short_drescreption = $request->short_drescreption;
         $blog->drescreption = $request->drescreption;
-        $blog->status = $request->status;
+        //$blog->status = $request->status;
         $blog->slug =  Str::slug($request->title);
         $blog->publish_date = Carbon::now();
+
         $image = $request->file('image');
         $imageCustomeName = rand().'.'.$image->getClientOriginalExtension();
         $location =public_path('backeend/blogimg/'.$imageCustomeName);
@@ -73,11 +68,13 @@ class BlogpostController extends Controller
         if($blog){
             $blog->save();
             alert()->success('Success','Blog Post Added Successfully');
-            return redirect()->route('blog.manage');
+            $this->eventdata= [$request->title,Auth::guard('userinfo')->user()->id,];
+            event(new PostCreatedEvent($this->eventdata));
+            return redirect()->back();
         }
         else{
             alert()->error('Error','something is happend please Try again');
-            return back();
+            return redirect()->back();
         }
     }
 
@@ -130,7 +127,7 @@ class BlogpostController extends Controller
         $blog = Blogpost::find($id);
         $blog->title = $request->title;
         $blog->category_id = $request->categoryId;
-        $blog->user_id = auth()->user()->id;
+        $blog->user_id = Auth::guard('userinfo')->user()->id;
         $blog->drescreption = $request->drescreption;
         $blog->status = $request->status;
         $blog->slug = Str::slug($request->title);
@@ -167,7 +164,27 @@ class BlogpostController extends Controller
             }
             $blog->delete();
             alert()->success('Success','Blog Post Delete Successfully');
-            return redirect()->route('blog.manage');
+            return redirect()->route('blog.add');
         }
     }
+    public function your_blogs($auth_id){
+        $your_blogs = Blogpost::where('user_id',$auth_id)->get();
+        return view('backend.pages.blogpost.yourBlog',compact('your_blogs'));
+
+    }//end merhod
+    public function BlogRequest(){
+        $requestedBlogs = Blogpost::where('status',2)->orderBy('created_at', 'DESC')->paginate(8);
+        return view('backend.pages.blogpost.requestBlog',compact('requestedBlogs'));
+    }//end method
+
+    public function BlogRequestApprove($id){
+        $requestedBlogs = Blogpost::find($id);
+        $requestedBlogs->status= 1;
+        $requestedBlogs->update();
+        if($requestedBlogs){
+            alert()->success('Success','Blog Post Approved Successfully');
+            return redirect()->back();
+        }
+    }
+
 }

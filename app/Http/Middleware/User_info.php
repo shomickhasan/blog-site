@@ -22,6 +22,7 @@ class User_info
             return redirect()->route('showLoginForm')->with('errors','Please Login First');
          }
 
+
         return $next($request);
     }
 }

@@ -1,6 +1,6 @@
 @extends('backend.mastertemplate.template')
 
-@section('contant') 
+@section('contant')
 {{-- topnavigationbar --}}
 <div class="br-pagetitle">
     <i class="icon ion-ios-home-outline"></i>
@@ -22,7 +22,7 @@
                                 <div class="form-group">
                                     <label id="title">Title</label>
                                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter your Blog Title" value="{{$blog->title}}"/>
-                                    @error('name') 
+                                    @error('name')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
@@ -33,7 +33,7 @@
                                         @foreach ($categories as $category)
                                         <option value="{{$category->id}}" @if($blog->category_id==$category->id) selected @endif>{{$category->name}}</option>
                                         @endforeach
-                                        @error('categoryId') 
+                                        @error('categoryId')
                                           <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </select>
@@ -43,14 +43,14 @@
                                 <div class="form-group">
                                     <label for="image">Image</label>
                                     <input type="file" class="form-control" id="image" name="image"/>
-                                     @error('image') 
+                                     @error('image')
                                       <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label id="drescreption">Tag Drescreption</label>
                                     <textarea name="drescreption" id="postdrescreption" cols="30" rows="5" class="form-control">{{$blog->drescreption}}</textarea>
-                                    @error('drescreption') 
+                                    @error('drescreption')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
@@ -60,9 +60,9 @@
                                     <select name="status" id="" class="form-control">
                                     <option value="1">---status---</option>
                                     <option value="1" @if($blog->status==1)selected @endif>Active</option>
-                                    <option value="0" @if($blog->status==0)selected @endif>Inactive</option> 
+                                    <option value="2" @if($blog->status==0)selected @endif>Inactive</option>
                                     </select>
-                                    @error('status') 
+                                    @error('status')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
@@ -79,7 +79,7 @@
               </div><!-- pd-x-25 -->
             </div><!-- card -->
 
-         
+
 
 
 @endsection
