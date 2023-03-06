@@ -68,7 +68,7 @@ class BlogpostController extends Controller
         if($blog){
             $blog->save();
             alert()->success('Success','Blog Post Added Successfully');
-            $this->eventdata= [$request->title,Auth::guard('userinfo')->user()->id,];
+            $this->eventdata= ['title'=>$request->title, 'author'=>Auth::guard('userinfo')->user()->name,];
             event(new PostCreatedEvent($this->eventdata));
             return redirect()->back();
         }

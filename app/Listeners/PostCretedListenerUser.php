@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Listeners;
-
+use App\Events\PostCreatedEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -23,7 +23,7 @@ class PostCretedListenerUser
      * @param  object  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(PostCreatedEvent $event)
     {
         //
     }
