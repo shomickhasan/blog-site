@@ -13,10 +13,13 @@ use Image;
 use File;
 use App\Models\Backend\Tag;
 use App\Events\PostCreatedEvent;
+use App\Events\NewPostEventAllUserNotify;
+use Illuminate\Support\Facades\Artisan;
+
 
 class BlogpostController extends Controller
 {
-    public $eventdata =[];
+    public $eventdata =[], $eventdatForUser;
 
 
     public function index()
@@ -68,6 +71,7 @@ class BlogpostController extends Controller
         if($blog){
             $blog->save();
             alert()->success('Success','Blog Post Added Successfully');
+            //mail even fire
             $this->eventdata= ['title'=>$request->title, 'author'=>Auth::guard('userinfo')->user()->name,];
             event(new PostCreatedEvent($this->eventdata));
             return redirect()->back();
@@ -183,6 +187,9 @@ class BlogpostController extends Controller
         $requestedBlogs->update();
         if($requestedBlogs){
             alert()->success('Success','Blog Post Approved Successfully');
+            $this->eventdatForUser= $requestedBlogs->title;
+            event(new NewPostEventAllUserNotify( $this->eventdatForUser));
+            //Artisan::call('queue:listen');
             return redirect()->back();
         }
     }

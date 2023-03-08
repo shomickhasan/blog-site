@@ -13,7 +13,7 @@ class HomeController extends Controller
     public function home(){
         $blogs = Blogpost::where('status',1)->orderBy('created_at', 'DESC')->take(5)->get();
         $blogs = $blogs->splice(2);
-        $restntpost = Blogpost::with('category','users')->orderBy('created_at', 'DESC')->where('status',1)->paginate(9);
+        $restntpost = Blogpost::with('category','users')->orderBy('created_at', 'DESC')->where('status',1)->simplePaginate(9);
         return view('frontend.home',compact('blogs','restntpost'));
     }
 

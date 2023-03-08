@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PostCreatedMailUser extends Mailable implements ShouldQueue
+class AdminPostApprove extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -16,11 +16,10 @@ class PostCreatedMailUser extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public $post , $username;
-    public function __construct($post, $uname)
+    public $post;
+    public function __construct($post)
     {
-        $this->post = $post;
-        $this->username = $uname;
+        $this->post=$post;
     }
 
     /**
@@ -30,6 +29,6 @@ class PostCreatedMailUser extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('mail.newpostnotificationMailForAllUser',['post'=>$this->post,'username'=>$this->username]);
+        return $this->view('mail/adminApproveMail',['post'=>$this->post]);
     }
 }

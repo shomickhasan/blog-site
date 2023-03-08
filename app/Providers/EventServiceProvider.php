@@ -7,7 +7,9 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use App\Events\PostCreatedEvent;
-use App\Listeners\PostCretedListenerUser;
+use App\Events\NewPostEventAllUserNotify;
+use App\Listeners\PostApproveAdminLitsener;
+use App\Listeners\NewPostEventUserLitsener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -20,7 +22,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        PostCreatedEvent::class=>[PostCretedListenerUser::class],
+        
+        PostCreatedEvent::class=>[PostApproveAdminLitsener::class],
+        NewPostEventAllUserNotify::class=>[NewPostEventUserLitsener::class],
 
     ];
 
