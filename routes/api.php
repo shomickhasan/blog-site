@@ -21,4 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/category/{id?}',[Apicontroller::class,'CategoryShow']);
 
+Route::post('/addcategory',[Apicontroller::class,'CategoryStore']);
+
+Route::get('/blog',[Apicontroller::class,'showBlog']);
+
 

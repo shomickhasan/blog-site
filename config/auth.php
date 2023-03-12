@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'user_infos',
         ],
+        'blogUser' => [
+            'driver' => 'session',
+            'provider' => 'user_infos',
+        ],
     ],
 
     /*
@@ -69,6 +73,10 @@ return [
             'model' => App\Models\User::class,
         ],
         'user_infos' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\userInfo::class,
+        ],
+        'blogUser' => [
             'driver' => 'eloquent',
             'model' => App\Models\userInfo::class,
         ],

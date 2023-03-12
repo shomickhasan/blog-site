@@ -22,9 +22,13 @@ class UserAuthController extends Controller
     }//end method
 
     public function signin(Request $request){
-      if(Auth::guard('userinfo')->attempt(['email'=>$request->EmailOrUsername, 'password'=>$request->password])){
+      if(Auth::guard('userinfo')->attempt(['email'=>$request->EmailOrUsername, 'password'=>$request->password,'status'=>1])){
       return redirect()->route('dashboard');
       }
+      elseif(Auth::guard('userinfo')->attempt(['email'=>$request->EmailOrUsername, 'password'=>$request->password,'status'=>2])){
+        return redirect()->route('home');
+      }
+
       else{
         return redirect()->route('showLoginForm')->with('errors','Email or Password Are Not Match');
       }

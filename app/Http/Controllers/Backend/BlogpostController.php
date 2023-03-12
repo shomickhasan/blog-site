@@ -14,7 +14,8 @@ use File;
 use App\Models\Backend\Tag;
 use App\Events\PostCreatedEvent;
 use App\Events\NewPostEventAllUserNotify;
-use Illuminate\Support\Facades\Artisan;
+use Exception;
+use Twilio\Rest\Client;
 
 
 class BlogpostController extends Controller
@@ -71,9 +72,32 @@ class BlogpostController extends Controller
         if($blog){
             $blog->save();
             alert()->success('Success','Blog Post Added Successfully');
-            //mail even fire
+            //mail event fire
             $this->eventdata= ['title'=>$request->title, 'author'=>Auth::guard('userinfo')->user()->name,];
             event(new PostCreatedEvent($this->eventdata));
+
+            //twilio sms send to admin for approve
+
+            try {
+                $account_sid = getenv("TWILIO_SID");
+                $auth_token = getenv("TWILIO_TOKEN");
+                $twilio_number = getenv("TWILIO_FROM");
+                $resever_number= "+880 1734 197067";
+
+                $client = new Client($account_sid, $auth_token);
+                $client->messages->create($resever_number,[
+                    'from' => $twilio_number,
+                    'body' => 'hellow twailio',
+                ]);
+                return redirect()->back();
+            }
+            catch (Exception $e) {
+                //
+            }
+
+
+            //end Twilio sms send
+
             return redirect()->back();
         }
         else{

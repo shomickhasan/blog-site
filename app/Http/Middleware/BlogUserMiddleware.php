@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class User_info
+class BlogUserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,19 +14,8 @@ class User_info
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-
-     //admin middleware
     public function handle(Request $request, Closure $next)
     {
-         if(Auth::guard('userinfo')->check()){
-            return $next($request);
-         }
-
-         else{
-            return redirect()->route('showLoginForm')->with('errors','You Have not permitted');
-         }
-
-
-
+        return $next($request);
     }
 }
